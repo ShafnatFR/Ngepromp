@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngoprompt - Ubah Suara Jadi Perintah AI Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* light grey background */
+        }
+        /* html {
+            scroll-behavior: smooth;
+        } */
+
+        /* Animated Gradient Background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #e0f2fe, #c7d2fe, #e0e7ff, #f0f9ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Shine Effect on Button */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.6s ease-in-out;
+        }
+        .shine-effect:hover::before {
+            left: 100%;
+        }
+
+        /* Scroll Animation Observer */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Active Nav Link Style */
+        .nav-link.active {
+            color: #2563eb; /* Tailwind's blue-600 */
+            font-weight: 700; /* bold */
+        }
+        .nav-link-mobile.active {
+            background-color: #eff6ff; /* blue-100 */
+            color: #2563eb; /* blue-600 */
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="" class="flex items-center gap-2">
+                         <img src="/gambar/logonobg.png" alt="Logo Ngoprompt" class="h-10 w-auto">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#fitur" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Fitur</a>
+                    <a href="#cara-kerja" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Cara Kerja</a>
+                    <a href="#untuk-siapa" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Untuk Siapa</a>
+                </div>
+                
+                <!-- CTA Button (Desktop) -->
+                <div class="hidden md:block">
+                    <a href="#" class="inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 shine-effect">
+                        Coba Sekarang
+                    </a>
+                </div>
+
+                <!-- Hamburger Menu Button (Mobile) -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="hamburger-icon" class="h-6 w-6 block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#fitur" class="nav-link-mobile text-gray-600 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Fitur</a>
+                <a href="#cara-kerja" class="nav-link-mobile text-gray-600 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Cara Kerja</a>
+                <a href="#untuk-siapa" class="nav-link-mobile text-gray-600 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Untuk Siapa</a>
+                 <a href="#" class="mt-4 w-full block text-center bg-blue-600 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300">
+                    Coba Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="py-16 sm:py-20 md:py-32 animated-gradient">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- Headline -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight tracking-tighter">
+                    Ubah Suara Menjadi <span class="text-blue-600">Perintah AI Profesional.</span> Seketika.
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-slate-600">
+                    Selamat tinggal pada prompt yang membingungkan. Cukup bicara, dan biarkan Ngoprompt meracik perintah detail yang siap menghasilkan karya luar biasa dari AI.
+                </p>
+
+                <!-- CTA Button -->
+                <div class="mt-8 sm:mt-10">
+                    <a href="#" class="inline-block bg-blue-600 text-white font-bold text-lg px-6 py-3 sm:px-8 sm:py-4 rounded-lg shadow-xl hover:bg-blue-700 transition-transform transform hover:scale-105 duration-300 shine-effect">
+                        🎙️ Mulai Meracik Prompt Gratis
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Visualization -->
+            <div class="max-w-5xl mx-auto mt-16 sm:mt-20 px-4 sm:px-6 lg:px-8 fade-in-section">
+                <div class="bg-white rounded-xl shadow-2xl p-2 border border-slate-200 transition-transform transform hover:scale-105 duration-300">
+                    <!-- Browser Mockup Header -->
+                    <div class="flex items-center gap-1.5 mb-2">
+                        <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                    </div>
+                    <!-- Image Content -->
+                    <div class="aspect-w-16 aspect-h-9 bg-slate-100 rounded-lg overflow-hidden">
+                        <img src="/gambar/tampilan.png" alt="Tampilan antarmuka aplikasi Ngoprompt" class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before & After Section -->
+        <section id="before-after" class="py-16 sm:py-20 md:py-24 bg-white fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tighter">
+                        Dari Perintah Biasa, Jadi Karya Luar Biasa
+                    </h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-slate-600">
+                        Ngoprompt tidak hanya mengubah suara menjadi teks, tapi mengubah ide sederhana Anda menjadi perintah yang dipahami sempurna oleh AI. Lihat perbedaannya.
+                    </p>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+                    
+                    <!-- BEFORE Column -->
+                    <div class="bg-slate-100 p-4 sm:p-6 rounded-xl border border-slate-200 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex items-center gap-3">
+                            <span class="text-lg sm:text-xl font-bold text-slate-500">SEBELUM</span>
+                            <span class="text-xs sm:text-sm bg-slate-200 text-slate-600 font-medium px-2 py-0.5 rounded-full">Input Suara Biasa</span>
+                        </div>
+                        <p class="mt-4 text-base sm:text-lg font-mono bg-white rounded-md p-4 text-slate-700 shadow-inner">"kucing putih main benang"</p>
+                        
+                        <div class="mt-6 aspect-w-1 aspect-h-1 bg-slate-200 rounded-lg overflow-hidden">
+                             <img src="/gambar/kucingSebelum.png" alt="Hasil AI dari prompt sederhana" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- AFTER Column -->
+                    <div class="bg-blue-50 p-4 sm:p-6 rounded-xl border-2 border-blue-500 shadow-2xl transition-transform transform hover:scale-105 duration-300">
+                         <div class="flex items-center gap-3">
+                            <span class="text-lg sm:text-xl font-bold text-blue-600">SESUDAH</span>
+                             <span class="text-xs sm:text-sm bg-blue-200 text-blue-800 font-medium px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" /></svg>
+                                Pakai Ngoprompt
+                            </span>
+                        </div>
+                        <p class="mt-4 text-base sm:text-lg font-mono bg-white rounded-md p-4 text-slate-700 shadow-inner">"Sebuah foto sinematik yang indah, seekor kucing putih Ragdoll yang sangat halus dengan mata biru tajam, sedang berbaring di atas karpet oriental yang detail. Kakinya dengan lembut memegang gulungan benang wol warna-warni..."</p>
+                        
+                        <div class="mt-6 aspect-w-1 aspect-h-1 bg-slate-200 rounded-lg overflow-hidden">
+                            <img src="/gambar/kucingSetelah.jpg" alt="Hasil AI dari prompt yang disempurnakan" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Section -->
+        <section id="fitur" class="py-16 sm:py-20 md:py-24 bg-slate-50 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tighter">
+                        Kekuatan Super Baru Anda
+                    </h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-slate-600">
+                        Kami telah merancang fitur-fitur canggih yang bekerja di balik layar agar Anda bisa fokus pada ide, bukan pada kerumitan teknis.
+                    </p>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    
+                    <!-- Feature 1: Generator Prompt Cerdas -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-lg sm:text-xl font-bold text-slate-900">Generator Prompt Cerdas</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">AI kami mengubah ide sederhana Anda menjadi perintah yang detail dan kaya deskripsi.</p>
+                    </div>
+
+                    <!-- Feature 2: Hasil Profesional -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-lg sm:text-xl font-bold text-slate-900">Hasil Profesional, Tanpa Jadi Ahli</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">Dapatkan hasil layaknya seorang ahli tanpa perlu mempelajari istilah teknis yang rumit.</p>
+                    </div>
+
+                    <!-- Feature 3: Untuk Semua Kebutuhan -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-lg sm:text-xl font-bold text-slate-900">Untuk Semua Kebutuhan AI</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">Baik untuk membuat gambar, ilustrasi, tulisan, email, bahkan kode program.</p>
+                    </div>
+
+                    <!-- Feature 4: Output Fleksibel -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-lg sm:text-xl font-bold text-slate-900">Output Fleksibel (Teks & JSON)</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">Salin prompt dalam format teks biasa atau ubah menjadi format JSON terstruktur.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="cara-kerja" class="py-16 sm:py-20 md:py-24 bg-white fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tighter">
+                        Hanya 3 Langkah dari Suara ke Hasil Sempurna
+                    </h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-slate-600">
+                        Proses yang kami rancang sangat intuitif. Dari ide di kepala Anda hingga menjadi prompt siap pakai hanya butuh beberapa detik.
+                    </p>
+                </div>
+
+                <!-- Steps Grid -->
+                <div class="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                    
+                    <!-- Step 1: Bicara -->
+                    <div class="text-center group">
+                        <div class="relative w-full max-w-xs mx-auto transition-transform transform group-hover:scale-105 duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-3xl transform -rotate-3"></div>
+                            <div class="relative bg-slate-800 rounded-2xl p-2 shadow-2xl">
+                                <img src="/gambar/gambarLangkah1.1.png" alt="Langkah 1: Bicara dan Ucapkan Ide" class="rounded-lg">
+                            </div>
+                        </div>
+                        <h3 class="mt-8 text-xl sm:text-2xl font-bold text-slate-900">1. Bicara & Ucapkan Ide</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">Tekan tombol mikrofon dan utarakan apa saja yang ada di pikiran Anda secara alami.</p>
+                    </div>
+
+                    <!-- Step 2: Sempurnakan -->
+                    <div class="text-center group">
+                        <div class="relative w-full max-w-xs mx-auto transition-transform transform group-hover:scale-105 duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-3xl"></div>
+                            <div class="relative bg-slate-800 rounded-2xl p-2 shadow-2xl">
+                                <img src="/gambar/gambarLangkah2.png" alt="Langkah 2: Sempurnakan Pilihan" class="rounded-lg">
+                            </div>
+                        </div>
+                        <h3 class="mt-8 text-xl sm:text-2xl font-bold text-slate-900">2. Sempurnakan Pilihan</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">Pilih tujuan dan gaya yang Anda inginkan. Biarkan AI kami meracik perintah terbaik.</p>
+                    </div>
+
+                    <!-- Step 3: Salin & Gunakan -->
+                    <div class="text-center group">
+                         <div class="relative w-full max-w-xs mx-auto transition-transform transform group-hover:scale-105 duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-3xl transform rotate-3"></div>
+                            <div class="relative bg-slate-800 rounded-2xl p-2 shadow-2xl">
+                                <img src="/gambar/gambarLangkah3.1.png" alt="Langkah 3: Salin dan Gunakan" class="rounded-lg">
+                            </div>
+                        </div>
+                        <h3 class="mt-8 text-xl sm:text-2xl font-bold text-slate-900">3. Salin & Gunakan</h3>
+                        <p class="mt-2 text-sm sm:text-base text-slate-600">Salin prompt canggih dengan sekali klik, lalu tempelkan ke platform AI favorit Anda.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Who is it for Section -->
+        <section id="untuk-siapa" class="py-16 sm:py-20 md:py-24 bg-slate-50 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tighter">
+                        AI Kini untuk Semua Orang, Tanpa Ribet
+                    </h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-base sm:text-lg text-slate-600">
+                        Ngoprompt adalah jembatan Anda untuk menghilangkan kerumitan teknis. Kami menerjemahkan ide sederhana Anda menjadi perintah yang dipahami sempurna oleh AI.
+                    </p>
+                </div>
+
+                <!-- Audience Grid -->
+                <div class="mt-12 sm:mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Audience 1: Image Creators -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 flex items-start space-x-4 sm:space-x-6 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex-shrink-0 h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Untuk Imajinasi Anda</h3>
+                            <p class="mt-2 text-sm sm:text-base text-slate-600">Buat gambar unik untuk ucapan ulang tahun, postingan media sosial, atau sekadar mewujudkan ide iseng.</p>
+                        </div>
+                    </div>
+
+                    <!-- Audience 2: Writers -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 flex items-start space-x-4 sm:space-x-6 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex-shrink-0 h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Untuk Tugas & Tulisan</h3>
+                            <p class="mt-2 text-sm sm:text-base text-slate-600">Dapatkan bantuan menyusun email, membuat puisi, atau membantu tugas sekolah dengan lebih cepat.</p>
+                        </div>
+                    </div>
+
+                    <!-- Audience 3: Curious Minds -->
+                     <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 flex items-start space-x-4 sm:space-x-6 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex-shrink-0 h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Untuk Rasa Ingin Tahu</h3>
+                            <p class="mt-2 text-sm sm:text-base text-slate-600">Tanyakan hal rumit dengan caramu sendiri dan dapatkan jawaban yang lebih akurat dan mudah.</p>
+                        </div>
+                    </div>
+
+                    <!-- Audience 4: Idea Realizers -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-slate-200 flex items-start space-x-4 sm:space-x-6 transition-transform transform hover:scale-105 duration-300">
+                        <div class="flex-shrink-0 h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 01-.517-3.86l.477-2.387a2 2 0 011.806-.547zM14.25 9.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Untuk Semua Ide Anda</h3>
+                            <p class="mt-2 text-sm sm:text-base text-slate-600">Dari merencanakan liburan, mencari ide resep, hingga membuat lelucon, ubah percakapan biasa menjadi hasil nyata.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Call to Action Section -->
+        <section class="bg-gradient-to-r from-blue-600 to-indigo-700">
+            <div class="max-w-4xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl tracking-tighter">
+                    <span class="block">Siap Meningkatkan Level Interaksi Anda dengan AI?</span>
+                </h2>
+                <p class="mt-4 text-lg leading-6 text-blue-100">
+                    Jangan biarkan ide brilian Anda terbuang karena prompt yang kurang optimal. Mulai sekarang, gratis.
+                </p>
+                <a href="#" class="mt-8 w-full inline-flex items-center justify-center px-8 py-4 border border-transparent rounded-lg shadow-xl text-lg font-bold text-blue-600 bg-white hover:bg-blue-50 transition-transform transform hover:scale-105 duration-300 sm:w-auto shine-effect">
+                    🚀 Mulai Membuat Prompt Terbaik Anda
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Logo and Description -->
+                <div class="col-span-1 sm:col-span-2">
+                     <a href="#" class="flex items-center gap-2">
+                        <img src="/gambar/logonobg.png" alt="Logo Ngoprompt" class="h-10 w-auto">
+                    </a>
+                    <p class="mt-4 text-slate-400 max-w-xs">Ubah suara menjadi perintah AI profesional. Dirancang untuk membuat teknologi AI dapat diakses oleh semua orang.</p>
+                </div>
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">Navigasi</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#fitur" class="text-base text-slate-400 hover:text-white transition-colors">Fitur</a></li>
+                        <li><a href="#cara-kerja" class="text-base text-slate-400 hover:text-white transition-colors">Cara Kerja</a></li>
+                        <li><a href="#untuk-siapa" class="text-base text-slate-400 hover:text-white transition-colors">Untuk Siapa</a></li>
+                    </ul>
+                </div>
+                 <!-- Legal Links -->
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-300 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-base text-slate-400 hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-base text-slate-400 hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between">
+                <p class="text-base text-slate-400">&copy; 2025 Ngoprompt. Proyek untuk Dosen AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Observer for fade-in animations
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            fadeInObserver.observe(section);
+        });
+
+        // Script for active navigation link on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+        const scrollSections = document.querySelectorAll('main section[id]');
+
+        const activateNavOnScroll = () => {
+            let currentSectionId = '';
+            scrollSections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 150) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            
+            const allLinks = [...navLinks, ...navLinksMobile];
+            allLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', activateNavOnScroll);
+
+        // Hamburger Menu Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                 mobileMenu.classList.add('hidden');
+                 hamburgerIcon.classList.remove('hidden');
+                 closeIcon.classList.add('hidden');
+            });
+        });
+
+    </script>
+</body>
+</html>
+
